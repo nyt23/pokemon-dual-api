@@ -1,42 +1,70 @@
-#root {
-  max-width: 1280px;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+/* Global App Styles */
+.app {
+  min-height: 100vh;
+  background: white;
+  font-family: 'Fredoka', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: 100%;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Responsive margins for all screen sizes */
+@media (min-width: 1200px) {
+  .app {
+    margin: 0 5%;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 992px) and (max-width: 1199px) {
+  .app {
+    margin: 0 4%;
   }
 }
 
-.card {
-  padding: 2em;
+@media (min-width: 768px) and (max-width: 991px) {
+  .app {
+    margin: 0 3%;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@media (min-width: 481px) and (max-width: 767px) {
+  .app {
+    margin: 0 2%;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    margin: 0 1%;
+  }
+}
+
+/* Ensure content doesn't overflow on very small screens */
+@media (max-width: 320px) {
+  .app {
+    margin: 0 0.5%;
+  }
+}
+
+/* Add smooth transitions for responsive changes */
+.app {
+  transition: margin 0.3s ease;
+}
+
+.main-content {
+  background: white;
+  min-height: calc(100vh - 250px);
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  margin-top: 0px;
+}
+
+body {
+  background: white;
 }

@@ -1,0 +1,115 @@
+.pokemon-list-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.pokemon-grid {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Desktop - 6 cards per row */
+@media (min-width: 1200px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Large tablets - 4 cards per row */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablets - 4 cards per row */
+@media (min-width: 768px) and (max-width: 991px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  
+  .pokemon-list-container {
+    padding: 16px;
+  }
+}
+
+/* Mobile phones - 3 cards per row */
+@media (max-width: 767px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .pokemon-list-container {
+    padding: 12px;
+  }
+}
+
+/* Small mobile phones - 3 cards per row
+@media (max-width: 480px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .pokemon-list-container {
+    padding: 8px;
+  }
+}
+
+/* Extra small screens - 1 card per row */
+@media (max-width: 320px) {
+  .pokemon-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .pokemon-list-container {
+    padding: 8px;
+  }
+}
+
+/* Loading, error, and empty states */
+.loading-message,
+.error-message,
+.empty-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #306FB6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-message p,
+.error-message p,
+.empty-message p {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.error-message p {
+  color: #e74c3c;
+}
