@@ -2,8 +2,9 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 80px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .pokemon-grid {
@@ -19,16 +20,40 @@
   }
 }
 
-/* Large tablets - 4 cards per row */
+/* Large tablets - 4 cards per row with flex column layout */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .pokemon-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  
   .pokemon-grid {
+    width: 100%;
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .navigation-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
   }
 }
 
-/* Tablets - 4 cards per row */
+/* Tablets - 4 cards per row with flex column layout */
 @media (min-width: 768px) and (max-width: 991px) {
+  .pokemon-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
   .pokemon-grid {
+    width: 100%;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
@@ -36,17 +61,41 @@
   .pokemon-list-container {
     padding: 16px;
   }
+
+  .navigation-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+  }
 }
 
-/* Mobile phones - 3 cards per row */
+/* Mobile phones - 3 cards per row with flex column layout */
 @media (max-width: 767px) {
+  .pokemon-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  
   .pokemon-grid {
+    width: 100%;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
   
   .pokemon-list-container {
     padding: 12px;
+  }
+
+  .navigation-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
   }
 }
 

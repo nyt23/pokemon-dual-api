@@ -58,7 +58,6 @@
 
 .main-content {
   background: white;
-  min-height: calc(100vh - 250px);
   padding: 0;
   position: relative;
   z-index: 1;
@@ -67,4 +66,37 @@
 
 body {
   background: white;
+}
+
+/* Prevent scrolling when modal is open */
+body[data-scroll-lock="true"] {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  /* Additional touch device scroll prevention */
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Footer under the list to show count */
+.count-footer {
+  text-align: center;
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .count-footer {
+    margin-bottom: 24px; /* space from bottom edge on small screens */
+    padding-bottom: 8px;
+  }
+}
+
+/* Ensure html element also prevents scrolling */
+html[data-scroll-lock="true"] {
+  overflow: hidden !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
 }

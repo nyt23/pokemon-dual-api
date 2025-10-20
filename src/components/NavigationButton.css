@@ -1,0 +1,237 @@
+.navigation-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(48, 111, 182, 0.8);
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Direction-specific positioning */
+.navigation-button.next {
+  right: -60px;
+}
+
+.navigation-button.prev {
+  left: -60px;
+}
+
+/* Desktop - default positioning */
+@media (min-width: 1200px) {
+  .navigation-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .navigation-button.next {
+    right: -60px;
+  }
+  
+  .navigation-button.prev {
+    left: -60px;
+  }
+}
+
+/* Large tablets - adjust positioning */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navigation-button {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .navigation-button.next {
+    right: -50px;
+  }
+  
+  .navigation-button.prev {
+    left: -50px;
+  }
+}
+
+/* Large tablets - 4 columns, horizontal positioning */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navigation-button {
+    position: static;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+/* Tablets - 4 columns, horizontal positioning */
+@media (min-width: 768px) and (max-width: 991px) {
+  .navigation-button {
+    position: static;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+/* Mobile phones - 3 columns, horizontal positioning */
+@media (max-width: 767px) {
+  .navigation-button {
+    position: static;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+/* Small mobile phones - 3 columns, bottom positioning */
+@media (max-width: 480px) {
+  .navigation-button {
+    position: static;
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    margin-top: 24px;
+  }
+}
+
+/* Extra small screens - 1 column, bottom positioning */
+@media (max-width: 320px) {
+  .navigation-button {
+    position: static;
+    align-self: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    margin-top: 20px;
+  }
+}
+
+.navigation-button:hover:not(.disabled):not(.loading) {
+  background: #306FB6;
+}
+
+.navigation-button:active:not(.disabled):not(.loading) {
+  background: #306FB6;
+}
+
+/* Hover states for flex positioned buttons */
+@media (max-width: 1199px) {
+  .navigation-button:hover:not(.disabled):not(.loading) {
+    background: #306FB6;
+  }
+
+  .navigation-button:active:not(.disabled):not(.loading) {
+    background: #306FB6;
+  }
+}
+
+.navigation-button.disabled {
+  background: #9CA3AF;
+  cursor: not-allowed;
+}
+
+.navigation-button.prev.disabled {
+  background: rgba(48, 111, 182, 0.4);
+}
+
+.navigation-button.loading {
+  cursor: not-allowed;
+}
+
+.loading-spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive loading spinner sizes */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .loading-spinner-small {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .loading-spinner-small {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .loading-spinner-small {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-spinner-small {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .loading-spinner-small {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.navigation-button-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive icon sizes */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navigation-button-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navigation-button-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navigation-button-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation-button-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .navigation-button-icon {
+    width: 12px;
+    height: 12px;
+  }
+}

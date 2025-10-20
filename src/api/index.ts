@@ -1,39 +1,62 @@
 import type { Pokemon, PokemonListItem } from '../types';
-import { ApiSource, getCurrentApiSource } from './sources';
-import { customPokemonApi } from './custom';
+import { ApiSource, getCurrentApiSource } from '../contexts/ApiSourceContext';
+import { customApiAdapter } from './customapi';
+import { pokeApiAdapter } from './pokeapi';
 
-// Unified API interface that abstracts different Pokemon data sources
-export interface PokemonApi {
-  getPokemonList(): Promise<PokemonListItem[]>;
+// Base API interface
+export interface BasePokemonApiInterface {
   getPokemonByName(name: string): Promise<Pokemon>;
-  searchPokemon(query: string): Promise<PokemonListItem[]>;
-  getPokemonByType(type: string): Promise<PokemonListItem[]>;
+  // searchPokemon(query: string): Promise<PokemonListItem[]>;
+  // getPokemonByType(type: string): Promise<PokemonListItem[]>;
 }
+
+// Unified API interface
+export interface PokemonApiInterface extends BasePokemonApiInterface {
+  getPokemonList(offset?: number, limit?: number): Promise<{
+    results: PokemonListItem[];
+    next: string | null;
+    previous: string | null;
+    count: number;
+  }>;
+}
+
+// Union type for all API types
+export type PokemonApi = PokemonApiInterface;
 
 export const createPokemonApi = (source: ApiSource = getCurrentApiSource()): PokemonApi => {
   switch (source) {
     case ApiSource.CUSTOM:
-      return customPokemonApi;
+      return customApiAdapter;
     case ApiSource.POKEAPI:
-      // TODO: Implement PokeAPI adapter
-      throw new Error('PokeAPI adapter not implemented yet');
+      return pokeApiAdapter;
     default:
       throw new Error(`Unknown API source: ${source}`);
   }
 };
 
-// Default API instance using current source
-export const pokemonApi = createPokemonApi();
 
+// Helper function to get Pokemon list with pagination support
+export const getPokemonList = async (offset: number = 0, limit: number = 12): Promise<{
+  results: PokemonListItem[];
+  next: string | null;
+  previous: string | null;
+  count: number;
+}> => {
+  const api = createPokemonApi();
+  return api.getPokemonList(offset, limit);
+};
 
-export const getPokemonList = (): Promise<PokemonListItem[]> => 
-  pokemonApi.getPokemonList();
+export const getPokemonByName = (name: string): Promise<Pokemon> => {
+  const api = createPokemonApi();
+  return api.getPokemonByName(name);
+};
 
-export const getPokemonByName = (name: string): Promise<Pokemon> => 
-  pokemonApi.getPokemonByName(name);
+// export const searchPokemon = (query: string): Promise<PokemonListItem[]> => {
+//   const api = createPokemonApi();
+//   return api.searchPokemon(query);
+// };
 
-export const searchPokemon = (query: string): Promise<PokemonListItem[]> => 
-  pokemonApi.searchPokemon(query);
-
-export const getPokemonByType = (type: string): Promise<PokemonListItem[]> => 
-  pokemonApi.getPokemonByType(type);
+// export const getPokemonByType = (type: string): Promise<PokemonListItem[]> => {
+//   const api = createPokemonApi();
+//   return api.getPokemonByType(type);
+// };

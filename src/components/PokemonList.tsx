@@ -1,5 +1,6 @@
 import React from 'react';
-import PokemonCard from './PokemonCard';
+import PokemonListCard from './PokemonListCard';
+import NavigationButton from './NavigationButton';
 import type { PokemonListItem } from '../types';
 import './PokemonList.css';
 
@@ -8,13 +9,25 @@ interface PokemonListProps {
   onPokemonClick?: (pokemon: PokemonListItem) => void;
   loading?: boolean;
   error?: string;
+  hasNext?: boolean;
+  onNextClick?: () => void;
+  nextLoading?: boolean;
+  onPrevClick?: () => void;
+  prevLoading?: boolean;
+  offset?: number;
 }
 
 const PokemonList: React.FC<PokemonListProps> = ({ 
   pokemon, 
   onPokemonClick, 
   loading = false, 
-  error 
+  error,
+  hasNext = false,
+  onNextClick,
+  nextLoading = false,
+  onPrevClick,
+  prevLoading = false,
+  offset = 0
 }) => {
   if (loading) {
     return (
@@ -51,12 +64,29 @@ const PokemonList: React.FC<PokemonListProps> = ({
     <div className="pokemon-list-container">
       <div className="pokemon-grid">
         {pokemon.map((pokemonItem, index) => (
-          <PokemonCard
+          <PokemonListCard
             key={`${pokemonItem.name}-${index}`}
             pokemon={pokemonItem}
             onClick={onPokemonClick}
           />
         ))}
+      </div>
+      <div className="navigation-buttons">
+        {hasNext && onNextClick && (
+          <>
+            <NavigationButton 
+              direction="prev"
+              onClick={onPrevClick || (() => {})}
+              disabled={offset === 0}
+              loading={prevLoading}
+            />
+            <NavigationButton 
+              direction="next"
+              onClick={onNextClick}
+              loading={nextLoading}
+            />
+          </>
+        )}
       </div>
     </div>
   );

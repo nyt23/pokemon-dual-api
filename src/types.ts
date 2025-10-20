@@ -1,4 +1,4 @@
-// Raw Pokemon data from your JSON files (PokeAPI format)
+// Raw Pokemon data from your JSON files (local format)
 export interface RawPokemonData {
   name: string;
   height: number; // in decimeters
@@ -19,6 +19,44 @@ export interface RawPokemonData {
       "official-artwork": {
         front_default: string;
         front_shiny: string;
+      };
+      dream_world: {
+        front_default: string;
+        front_female: string | null;
+      };
+    };
+  };
+}
+
+// Raw Pokemon data from PokeAPI (different structure)
+export interface PokeApiRawPokemonData {
+  name: string;
+  height: number; // in decimeters
+  weight: number; // in hectograms
+  types: Array<{
+    type: {
+      name: string;
+    };
+  }>;
+  stats: Array<{
+    base_stat: number;
+    stat: {
+      name: string;
+    };
+  }>;
+  sprites: {
+    front_default: string;
+    back_default: string;
+    front_shiny: string;
+    back_shiny: string;
+    other: {
+      "official-artwork": {
+        front_default: string;
+        front_shiny: string;
+      };
+      dream_world: {
+        front_default: string;
+        front_female: string | null;
       };
     };
   };
@@ -68,10 +106,4 @@ export interface PokemonDetailResponse {
 export interface ApiError {
   message: string;
   code?: string;
-}
-
-// API configuration
-export interface ApiConfig {
-  baseUrl?: string;
-  timeout?: number;
 }

@@ -1,39 +1,29 @@
 import React from 'react';
 import TypeIcon from './TypeIcon';
 import type { PokemonListItem } from '../types';
-import './PokemonCard.css';
+import { getPokemonBackgroundStyle } from '../utils/typeColors';
+import './PokemonListCard.css';
 
-interface PokemonCardProps {
+interface PokemonListCardProps {
   pokemon: PokemonListItem;
   onClick?: (pokemon: PokemonListItem) => void;
 }
 
-const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, onClick }) => {
+const PokemonListCard: React.FC<PokemonListCardProps> = ({ pokemon, onClick }) => {
   const handleClick = () => {
     if (onClick) {
       onClick(pokemon);
     }
   };
 
-  // Get the first type's color with 10% opacity
-  const getBackgroundColor = () => {
-    if (pokemon.types.length > 0 && pokemon.types[0].color) {
-      const color = pokemon.types[0].color;
-      // Convert to rgba with 10% opacity
-      const hex = color.replace('#', '');
-      const r = parseInt(hex.substr(0, 2), 16);
-      const g = parseInt(hex.substr(2, 2), 16);
-      const b = parseInt(hex.substr(4, 2), 16);
-      return `rgba(${r}, ${g}, ${b}, 0.1)`;
-    }
-    return '#f9f9f9'; // fallback to original color
-  };
+  // Get background styling using shared utility
+  const getBackgroundStyle = () => getPokemonBackgroundStyle(pokemon.types);
 
   return (
     <div 
       className="pokemon-card" 
       onClick={handleClick}
-      style={{ backgroundColor: getBackgroundColor() }}
+      style={getBackgroundStyle()}
     >
       <div className="pokemon-image-container">
         <img 
@@ -61,4 +51,6 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, onClick }) => {
   );
 };
 
-export default PokemonCard;
+export default PokemonListCard;
+
+

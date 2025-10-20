@@ -16,7 +16,7 @@ const Header: React.FC = () => {
         <div className="header-content">
           <div className="title-container">
             <img src={titleIconLeft} alt="Left title icon" className="title-icon left" />
-            <h1 className="app-title">Pokémon Explorer</h1>
+            <h1 className="app-title">Poképedia</h1>
             <img src={titleIconRight} alt="Right title icon" className="title-icon right" />
           </div>
           <p className="app-subtitle">Dual API Edition</p>

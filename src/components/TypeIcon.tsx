@@ -1,12 +1,14 @@
 import React from 'react';
+import Tooltip from './Tooltip';
 
 interface TypeIconProps {
   type: string;
   size?: number;
   className?: string;
+  showTooltip?: boolean;
 }
 
-const TypeIcon: React.FC<TypeIconProps> = ({ type, size = 24, className = '' }) => {
+const TypeIcon: React.FC<TypeIconProps> = ({ type, size = 24, className = '', showTooltip = true }) => {
   const iconStyle = {
     width: size,
     height: size,
@@ -38,7 +40,7 @@ const TypeIcon: React.FC<TypeIconProps> = ({ type, size = 24, className = '' }) 
 
   const iconPath = typeIconMap[normalizedType] || '/icons/normal.svg';
 
-  return (
+  const iconElement = (
     <img 
       src={iconPath} 
       alt={`${type} type icon`}
@@ -53,6 +55,16 @@ const TypeIcon: React.FC<TypeIconProps> = ({ type, size = 24, className = '' }) 
       }}
     />
   );
+
+  if (showTooltip) {
+    return (
+      <Tooltip content={type.charAt(0).toUpperCase() + type.slice(1)} position="top">
+        {iconElement}
+      </Tooltip>
+    );
+  }
+
+  return iconElement;
 };
 
 export default TypeIcon;
