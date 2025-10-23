@@ -18,6 +18,9 @@ export const usePokemonData = () => {
     setCurrentSource(source);
     setOffset(0);
     setPokemon([]);
+    // Always refresh data, even if the source is the same
+    setLoading(true);
+    fetchPokemonData(0).finally(() => setLoading(false));
   };
 
   const fetchPokemonData = async (newOffset: number) => {
